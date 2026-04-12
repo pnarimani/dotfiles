@@ -1,8 +1,8 @@
-" .ideavimrc is a configuration file for IdeaVim plugin. It uses
-"   the same commands as the original .vimrc configuration.
-" You can find a list of commands here: https://jb.gg/h38q75
-" Find more examples here: https://jb.gg/share-ideavimrc
+" IdeaVim docs: https://jb.gg/h38q75
+
+" General ---------------------------------------------------------------------
 let mapleader=" "
+
 set showmode
 set incsearch
 set nu
@@ -10,62 +10,73 @@ set relativenumber
 set ignorecase
 set smartcase
 set clipboard+=unnamed
+set timeout
+set timeoutlen=300
+set visualbell
+set noerrorbells
+set ideajoin
+set idearefactormode=visual
 
+" Plugins ---------------------------------------------------------------------
 set functiontextobj
-Plug 'vim-scripts/argtextobj.vim'
-Plug 'tpope/vim-surround'
-Plug 'machakann/vim-highlightedyank'
-Plug 'machakann/vim-highlightedyank'
-Plug 'tpope/vim-commentary'
 set commentary
 set quickscope
 set multicursor
 
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'tpope/vim-surround'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+
 let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
+" Editing ---------------------------------------------------------------------
 map <leader>vo :action MoveElementLeft<CR>
 map ml :action MoveElementRight<CR>
 
 nnoremap <C-c> <Esc>
 
+xnoremap <leader>p \"_dP
+nnoremap <leader>d \"_d
+vnoremap <leader>d \"_d
+
+" Windows ---------------------------------------------------------------------
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-set timeout
-set timeoutlen=300
-set visualbell
-set noerrorbells
-
+" Refactoring -----------------------------------------------------------------
 nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <leader>f :action SilentCodeCleanup<CR>
 nnoremap <leader>in :action Inline<CR>
-xnoremap <leader>re :action ShowIntentionActions<CR>
 nnoremap <leader>re :action ShowIntentionActions<CR>
+xnoremap <leader>re :action ShowIntentionActions<CR>
 nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
 xnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
+
+" Navigation ------------------------------------------------------------------
 nnoremap gr :action ShowUsages<CR>
 nnoremap <leader>gr :action FindUsages<CR>
 nnoremap <leader>ss :action GotoSymbol<CR>
 nnoremap <leader>sd :action FileStructurePopup<CR>
 nnoremap <leader>sf :action GotoClass<CR>
 nnoremap gi :action GotoImplementation<CR>
+nnoremap gb :action GotoSuperMethod<CR>
+nnoremap gD :action GotoTypeDeclaration<CR>
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
 
+" Diagnostics -----------------------------------------------------------------
 nnoremap <leader>q :action ReSharperGotoNextErrorInSolution<CR>
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
 
-nmap ]d <Action>(GotoNextError)
-nmap [d <Action>(GotoPreviousError)
+" Debugger --------------------------------------------------------------------
+" JetBrains exposes start (Debug) and continue (Resume) as separate actions.
+nnoremap <leader>tc :action Resume<CR>
+nnoremap <leader>ti :action StepInto<CR>
+nnoremap <leader>to :action StepOver<CR>
+nnoremap <leader>tu :action StepOut<CR>
 
-nmap <C-o> <Action>(Back)
-nmap gD <Action>(GotoTypeDeclaration)
-nmap <C-i> <Action>(Forward)
-
-" nmap <C-n> <Plug>NextWholeOccurrence
-" xmap <C-n> <Plug>NextWholeOccurrence
-
-
-xnoremap <leader>p \"_dP
-nnoremap <leader>d \"_d
-vnoremap <leader>d \"_d
 
