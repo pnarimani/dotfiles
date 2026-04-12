@@ -1,4 +1,4 @@
 # Option B — very commonly successful
 keybind = shift+enter=text:\x1b\r
-theme = Jubi
+theme = Monokai Remastered
 font-size = 15
