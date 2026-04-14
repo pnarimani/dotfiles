@@ -90,7 +90,7 @@ On first start, `mason-tool-installer.nvim` will automatically install:
 - `roslyn`
 - `vtsls`
 
-`tree-sitter-manager.nvim` is also configured to install these parsers:
+`tree-sitter-manager.nvim` installs these parsers on demand for real file buffers:
 
 - `bash`
 - `c_sharp`
@@ -354,7 +354,7 @@ After launching Neovim for the first time:
 
 1. Let `lazy.nvim` install plugins.
 2. Let Mason install its managed tools.
-3. Let `tree-sitter-manager.nvim` install parsers.
+3. Open files in the languages you use and let `tree-sitter-manager.nvim` install their parsers on first use.
 4. Run:
    - `:checkhealth`
    - `:checkhealth mason`
@@ -362,7 +362,7 @@ After launching Neovim for the first time:
 5. Authenticate Copilot with:
    - `:Copilot auth`
 
-The first start can take a while because plugins, language servers, debug adapters, and parsers are all downloaded then.
+The first start can take a while because plugins and Mason-managed tools are downloaded then. Tree-sitter parsers are installed the first time you open a matching real file buffer.
 
 ## Extra steps for language-specific workflows
 
