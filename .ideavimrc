@@ -78,4 +78,7 @@ nnoremap <leader>ti :action StepInto<CR>
 nnoremap <leader>to :action StepOver<CR>
 nnoremap <leader>tu :action StepOut<CR>
 
-
+" Multi-cursor ----------------------------------------------------------------
+map <C-n> <A-n>
+map <C-x> <A-x>
+map <C-p> <A-p>
