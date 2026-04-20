@@ -1,3 +1,5 @@
 # Option B — very commonly successful
 keybind = shift+enter=text:\x1b\r
 theme = Monokai Remastered
+keybind = alt+c=copy_to_clipboard
+keybind = alt+v=paste_from_clipboard

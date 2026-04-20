@@ -1,3 +1,10 @@
+if [[ -n "$SSH_CONNECTION" ]] && [[ -n "$TMUX" ]]; then
+    tmux_socket="${TMUX%%,*}"
+    if [[ ! -S "$tmux_socket" ]]; then
+        unset TMUX
+    fi
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 export EDITOR=nvim
