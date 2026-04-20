@@ -15,7 +15,6 @@ set timeoutlen=300
 set visualbell
 set noerrorbells
 set ideajoin
-set idearefactormode=visual
 
 " Plugins ---------------------------------------------------------------------
 set functiontextobj

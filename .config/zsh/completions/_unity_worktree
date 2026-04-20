@@ -1,0 +1,47 @@
+#compdef unity_worktree
+
+_unity_worktree() {
+    emulate -L zsh
+    setopt extendedglob
+
+    local repo_root action
+    local -a branches worktree_paths worktree_names
+
+    action="${words[2]}"
+
+    case "$CURRENT" in
+        2)
+            compadd create remove
+            return 0
+            ;;
+        3)
+            if [[ "$action" == "remove" ]]; then
+                repo_root="$(git -C "$PWD" rev-parse --show-toplevel 2>/dev/null)" || return 0
+                worktree_paths=("${(@f)$(git -C "$repo_root" worktree list --porcelain 2>/dev/null | sed -n 's/^worktree //p')}")
+                worktree_names=("${worktree_paths:t}")
+                compadd -- "${worktree_names[@]}"
+            fi
+            return 0
+            ;;
+        4)
+            if [[ "$action" == "create" ]]; then
+                repo_root="$(git -C "$PWD" rev-parse --show-toplevel 2>/dev/null)" || return 0
+                branches=("${(@f)$(git -C "$repo_root" for-each-ref --format='%(refname:short)' refs/heads 2>/dev/null)}")
+                compadd -- "${branches[@]}"
+            elif [[ "$action" == "remove" && -n "$PREFIX" ]]; then
+                _files -/
+            fi
+            return 0
+            ;;
+        5)
+            if [[ "$action" == "create" && -n "$PREFIX" ]]; then
+                _files -/
+            fi
+            return 0
+            ;;
+    esac
+
+    return 0
+}
+
+_unity_worktree "$@"
