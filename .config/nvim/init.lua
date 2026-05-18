@@ -206,7 +206,14 @@ do
     },
   }
 
-  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+  -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+  vim.keymap.set('n', '<leader>q', function()
+     vim.diagnostic.setqflist({
+       severity = vim.diagnostic.severity.ERROR, -- only errors
+       open = false,                             -- don't open quickfix window
+     })
+     pcall(vim.cmd.cnext)
+   end, { desc = 'Next workspace error' })
 
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
   -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
