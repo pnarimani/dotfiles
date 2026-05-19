@@ -185,7 +185,7 @@ do
   -- Diagnostic Config & Keymaps
   --  See `:help vim.diagnostic.Opts`
   vim.diagnostic.config {
-    update_in_insert = false,
+    update_in_insert = true,
     severity_sort = true,
     float = { border = 'rounded', source = 'if_many' },
     underline = { severity = { min = vim.diagnostic.severity.WARN } },
@@ -208,12 +208,11 @@ do
 
   -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
   vim.keymap.set('n', '<leader>q', function()
-     vim.diagnostic.setqflist({
-       severity = vim.diagnostic.severity.ERROR, -- only errors
-       open = false,                             -- don't open quickfix window
-     })
-     pcall(vim.cmd.cnext)
-   end, { desc = 'Next workspace error' })
+    vim.diagnostic.jump {
+      count = 1,
+      severity = vim.diagnostic.severity.ERROR,
+    }
+  end, { desc = 'Next [E]rror diagnostic' })
 
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
   -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -697,7 +696,27 @@ do
   ---@type table<string, vim.lsp.Config>
   local servers = {
     -- clangd = {},
-    gopls = {},
+    gopls = {
+      flags = {
+        -- Send text changes to gopls with less debounce, so diagnostics refresh sooner.
+        debounce_text_changes = 50,
+      },
+      settings = {
+        gopls = {
+          -- Run diagnostics as you edit (instead of waiting for save-only behavior).
+          diagnosticsTrigger = 'Edit',
+          -- Lower deep-diagnostics delay for faster feedback after refactors/renames.
+          diagnosticsDelay = '100ms',
+          -- Keep workspace scans focused by excluding common non-Go-heavy dirs.
+          directoryFilters = {
+            '-.git',
+            '-.idea',
+            '-.vscode',
+            '-**/node_modules',
+          },
+        },
+      },
+    },
     pyright = {},
     -- rust_analyzer = {},
     --
