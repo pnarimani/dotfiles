@@ -206,14 +206,6 @@ do
     },
   }
 
-  -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-  vim.keymap.set('n', '<leader>q', function()
-    vim.diagnostic.jump {
-      count = 1,
-      severity = vim.diagnostic.severity.ERROR,
-    }
-  end, { desc = 'Next [E]rror diagnostic' })
-
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
   -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
   -- is not what someone will guess without a bit more experience.
@@ -418,11 +410,17 @@ do
   --  - va)  - [V]isually select [A]round [)]paren
   --  - yiiq - [Y]ank [I]nside [I]+1 [Q]uote
   --  - ci'  - [C]hange [I]nside [']quote
+  local spec_treesitter = require('mini.ai').gen_spec.treesitter
   require('mini.ai').setup {
     -- NOTE: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
     mappings = {
-      around_next = 'aa',
-      inside_next = 'ii',
+      around_next = 'aN',
+      inside_next = 'iN',
+    },
+    custom_textobjects = {
+      f = spec_treesitter({ a = '@function.outer', i = '@function.inner' }),
+      a = spec_treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
+      c = spec_treesitter({ a = '@call.outer', i = '@call.inner' }),
     },
     n_lines = 500,
   }
@@ -924,6 +922,7 @@ do
 
   -- NOTE: You can also specify a branch or a specific commit
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
+  vim.pack.add { gh 'nvim-treesitter/nvim-treesitter-textobjects' }
 
   -- Ensure basic parsers are installed
   local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
