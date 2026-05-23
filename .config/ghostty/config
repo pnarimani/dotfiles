@@ -2,3 +2,4 @@
 theme = Monokai Remastered
 keybind = alt+c=copy_to_clipboard
 keybind = alt+v=paste_from_clipboard
+mouse-scroll-multiplier = precision:0.35,discrete:1
