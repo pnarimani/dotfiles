@@ -379,22 +379,8 @@ do
   }
 
   -- [[ Colorscheme ]]
-  vim.pack.add { gh 'rebelot/kanagawa.nvim' }
-  ---@diagnostic disable-next-line: missing-fields
-  require('kanagawa').setup {
-    styles = {
-      commentStyle = { italic = false }, -- Disable italics in comments
-    },
-
-    overrides = function(colors)
-      return {
-        ['@lsp.type.type.go'] = { fg = colors.theme.syn.type },
-        ['@lsp.type.function.go'] = { fg = colors.theme.syn.fun },
-      }
-    end,
-  }
-
-  vim.cmd.colorscheme 'kanagawa'
+  vim.pack.add { gh 'catppuccin/nvim' }
+  vim.cmd.colorscheme 'catppuccin-mocha'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
