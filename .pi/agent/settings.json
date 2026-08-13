@@ -13,7 +13,6 @@
   "packages": [
     "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:@tintinweb/pi-subagents",
     "npm:@ff-labs/pi-fff"
   ],
   "hideThinkingBlock": true,
