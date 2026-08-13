@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>pi · review response</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.18/index.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/index.min.css" />
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg-soft: #161923;
+    --bg-raised: #1b1f2b;
+    --border: #262b38;
+    --fg: #e6e9ef;
+    --fg-dim: #99a1b3;
+    --accent: #7aa2f7;
+    --accent-strong: #4c7ef3;
+    --ok: #58c98b;
+    --radius: 14px;
+    --composer-height: 210px;
+
+    /* Text: Inter (readable UI sans). Code only: JetBrains Mono. */
+    --font-text: "Inter", "Inter var", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", "JetBrainsMono Nerd Font", "JetBrains Mono NL",
+      ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --body-font-size: 16px;
+    --composer-font-size: 17px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f7f8fa;
+      --bg-soft: #ffffff;
+      --bg-raised: #ffffff;
+      --border: #e1e4ea;
+      --fg: #1c2027;
+      --fg-dim: #626b7b;
+      --accent: #2f6feb;
+      --accent-strong: #1d5ae0;
+      --ok: #1a7f4b;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Prose + UI use the text font. Form controls do not inherit font, so they
+     are listed explicitly. */
+  html, body, button, input, textarea, select {
+    font-family: var(--font-text);
+  }
+  /* JetBrains Mono is reserved for code. */
+  pre, code, kbd, samp, pre code {
+    font-family: var(--font-mono) !important;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-size: var(--body-font-size);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 900px; margin: 0 auto; padding: 32px 24px calc(var(--composer-height) + 48px); }
+
+  header.top {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding-bottom: 16px; margin-bottom: 28px; border-bottom: 1px solid var(--border);
+  }
+  .brand { font-weight: 700; letter-spacing: -.01em; font-size: 15px; }
+  .brand .dot { color: var(--accent); }
+  .chip {
+    font-size: 12px; color: var(--fg-dim); background: var(--bg-soft);
+    border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px;
+    max-width: 60ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .spacer { flex: 1 1 auto; }
+
+  article.md { overflow-wrap: anywhere; }
+  article.md > *:first-child { margin-top: 0; }
+  article.md h1, article.md h2, article.md h3, article.md h4 {
+    line-height: 1.3; margin: 1.8em 0 .6em; font-weight: 650; letter-spacing: -.015em;
+  }
+  article.md h1 { font-size: 1.85em; }
+  article.md h2 { font-size: 1.45em; border-bottom: 1px solid var(--border); padding-bottom: .3em; }
+  article.md h3 { font-size: 1.2em; }
+  article.md p { margin: 0 0 1em; }
+  article.md a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  article.md a:hover { border-bottom-color: var(--accent); }
+  article.md ul, article.md ol { margin: 0 0 1em; padding-left: 1.5em; }
+  article.md li { margin: .25em 0; }
+  article.md blockquote {
+    margin: 0 0 1em; padding: .2em 1em; color: var(--fg-dim);
+    border-left: 3px solid var(--accent); background: var(--bg-soft); border-radius: 0 8px 8px 0;
+  }
+  article.md code {
+    font-size: .88em; background: var(--bg-soft); border: 1px solid var(--border);
+    border-radius: 6px; padding: .12em .38em;
+  }
+  article.md pre {
+    background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px; overflow-x: auto; margin: 0 0 1.2em;
+  }
+  article.md pre code { background: none; border: 0; padding: 0; font-size: .86em; line-height: 1.55; }
+  article.md table { border-collapse: collapse; width: 100%; margin: 0 0 1.2em; display: block; overflow-x: auto; }
+  article.md th, article.md td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+  article.md th { background: var(--bg-soft); }
+  article.md hr { border: 0; border-top: 1px solid var(--border); margin: 2em 0; }
+  article.md img { max-width: 100%; border-radius: 8px; }
+  article.md input[type="checkbox"] { margin-right: .4em; }
+
+  .composer {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    padding: 14px 24px 20px;
+    background: linear-gradient(to top, var(--bg) 62%, transparent);
+  }
+  .composer-inner {
+    max-width: 900px; margin: 0 auto; background: var(--bg-raised);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    padding: 12px 12px 10px;
+  }
+  #reply {
+    display: block; width: 100%; min-height: 104px; max-height: 45vh; resize: none;
+    background: transparent; border: 0; outline: none; color: var(--fg);
+    font-family: var(--font-text) !important;
+    font-size: var(--composer-font-size) !important;
+    line-height: 1.55 !important;
+    padding: 8px 8px 12px;
+  }
+  #reply::placeholder { color: var(--fg-dim); font-size: var(--composer-font-size); }
+  .composer-bar { display: flex; align-items: center; gap: 12px; padding: 0 6px; }
+  .hint { font-size: 13px; color: var(--fg-dim); }
+  button.send {
+    margin-left: auto; border: 0; border-radius: 10px; cursor: pointer;
+    background: var(--accent-strong); color: #fff; font-weight: 600; font-size: 15px;
+    padding: 10px 22px; transition: opacity .15s ease, transform .05s ease;
+  }
+  button.send:hover { opacity: .9; }
+  button.send:active { transform: translateY(1px); }
+  button.send:disabled { opacity: .45; cursor: not-allowed; }
+  .error { color: #ff7a85; font-size: 13px; padding: 4px 6px 0; display: none; }
+
+  .done {
+    position: fixed; inset: 0; z-index: 50; display: none;
+    align-items: center; justify-content: center; flex-direction: column; gap: 10px;
+    background: var(--bg); text-align: center; padding: 24px;
+  }
+  .done.show { display: flex; }
+  .done .tick { font-size: 44px; color: var(--ok); }
+  .done.stale .tick { color: var(--fg-dim); }
+  .done .msg { font-size: 18px; font-weight: 600; }
+  .done .sub { color: var(--fg-dim); font-size: 14px; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <span class="brand">pi<span class="dot">.</span> response review</span>
+      <span class="spacer"></span>
+      <!--PI_CHIPS-->
+    </header>
+    <article class="md" id="content"></article>
+  </div>
+
+  <form class="composer" id="form">
+    <div class="composer-inner">
+      <textarea id="reply" placeholder="Write your reply to the model…" autofocus spellcheck="true"></textarea>
+      <div class="composer-bar">
+        <span class="hint">⌘/Ctrl + Enter to send</span>
+        <button class="send" id="send" type="submit">Send</button>
+      </div>
+      <div class="error" id="error"></div>
+    </div>
+  </form>
+
+  <div class="done" id="done">
+    <div class="tick" id="done-tick">✓</div>
+    <div class="msg" id="done-msg">Reply sent to pi</div>
+    <div class="sub" id="done-sub">You can close this tab.</div>
+  </div>
+
+  <script id="payload" type="application/json">__PI_PAYLOAD_JSON__</script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <script>
+  (function () {
+    var payload = JSON.parse(document.getElementById("payload").textContent);
+    var target = document.getElementById("content");
+
+    /* ---------------- markdown ---------------- */
+    function escapeHtml(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    /* Offline fallback renderer: fenced code, headings, lists, task lists,
+       blockquotes, tables, hr, inline code/bold/italic/strike/links/images. */
+    function fallbackRender(md) {
+      var lines = md.replace(/\r\n?/g, "\n").split("\n");
+      var out = [];
+      var i = 0;
+
+      function inline(t) {
+        var slots = [];
+        t = escapeHtml(t).replace(/`([^`]+)`/g, function (_m, code) {
+          slots.push("<code>" + code + "</code>");
+          return "\u0000" + (slots.length - 1) + "\u0000";
+        });
+        t = t.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img alt="$1" src="$2" />');
+        t = t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+        t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+        t = t.replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>");
+        t = t.replace(/~~([^~]+)~~/g, "<del>$1</del>");
+        return t.replace(/\u0000(\d+)\u0000/g, function (_m, n) { return slots[+n]; });
+      }
+
+      while (i < lines.length) {
+        var line = lines[i];
+
+        var fence = /^\s*```\s*([\w+-]*)/.exec(line);
+        if (fence) {
+          var lang = fence[1];
+          var buf = [];
+          i++;
+          while (i < lines.length && !/^\s*```/.test(lines[i])) { buf.push(lines[i]); i++; }
+          i++;
+          out.push('<pre><code class="language-' + lang + '">' + escapeHtml(buf.join("\n")) + "</code></pre>");
+          continue;
+        }
+
+        var heading = /^(#{1,6})\s+(.*)$/.exec(line);
+        if (heading) {
+          var level = heading[1].length;
+          out.push("<h" + level + ">" + inline(heading[2]) + "</h" + level + ">");
+          i++;
+          continue;
+        }
+
+        if (/^\s*([-*_])\s*\1\s*\1[-*_\s]*$/.test(line)) { out.push("<hr />"); i++; continue; }
+
+        if (/^\s*\|.*\|\s*$/.test(line) && i + 1 < lines.length && /^\s*\|[\s:|-]+\|\s*$/.test(lines[i + 1])) {
+          var head = line.split("|").slice(1, -1).map(function (c) { return "<th>" + inline(c.trim()) + "</th>"; });
+          i += 2;
+          var rows = [];
+          while (i < lines.length && /^\s*\|.*\|\s*$/.test(lines[i])) {
+            rows.push("<tr>" + lines[i].split("|").slice(1, -1).map(function (c) {
+              return "<td>" + inline(c.trim()) + "</td>";
+            }).join("") + "</tr>");
+            i++;
+          }
+          out.push("<table><thead><tr>" + head.join("") + "</tr></thead><tbody>" + rows.join("") + "</tbody></table>");
+          continue;
+        }
+
+        if (/^\s*>\s?/.test(line)) {
+          var quote = [];
+          while (i < lines.length && /^\s*>\s?/.test(lines[i])) { quote.push(lines[i].replace(/^\s*>\s?/, "")); i++; }
+          out.push("<blockquote>" + fallbackRender(quote.join("\n")) + "</blockquote>");
+          continue;
+        }
+
+        if (/^\s*([-*+]|\d+[.)])\s+/.test(line)) {
+          var ordered = /^\s*\d/.test(line);
+          var items = [];
+          while (i < lines.length && /^\s*([-*+]|\d+[.)])\s+/.test(lines[i])) {
+            var text = inline(lines[i].replace(/^\s*([-*+]|\d+[.)])\s+/, ""));
+            text = text.replace(/^\[( |x|X)\]\s+/, function (_m, mark) {
+              return '<input type="checkbox" disabled' + (mark === " " ? "" : " checked") + "/> ";
+            });
+            items.push("<li>" + text + "</li>");
+            i++;
+          }
+          out.push((ordered ? "<ol>" : "<ul>") + items.join("") + (ordered ? "</ol>" : "</ul>"));
+          continue;
+        }
+
+        if (!line.trim()) { i++; continue; }
+
+        var para = [];
+        while (i < lines.length && lines[i].trim() && !/^\s*(#{1,6}\s|>|```|[-*+]\s|\d+[.)]\s|\|)/.test(lines[i])) {
+          para.push(lines[i]);
+          i++;
+        }
+        out.push("<p>" + inline(para.join("\n")).replace(/\n/g, "<br />") + "</p>");
+      }
+
+      return out.join("\n");
+    }
+
+    try {
+      if (window.marked && typeof window.marked.parse === "function") {
+        window.marked.setOptions({ gfm: true, breaks: false });
+        target.innerHTML = window.marked.parse(payload.markdown);
+      } else {
+        target.innerHTML = fallbackRender(payload.markdown);
+      }
+    } catch (_err) {
+      target.innerHTML = fallbackRender(payload.markdown);
+    }
+
+    if (window.hljs) {
+      document.querySelectorAll("pre code").forEach(function (block) {
+        try { window.hljs.highlightElement(block); } catch (_e) {}
+      });
+    }
+    document.querySelectorAll("article.md a[href]").forEach(function (a) {
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noreferrer");
+    });
+
+    /* ---------------- composer ---------------- */
+    var form = document.getElementById("form");
+    var textarea = document.getElementById("reply");
+    var sendBtn = document.getElementById("send");
+    var errorEl = document.getElementById("error");
+    var doneEl = document.getElementById("done");
+    var composer = document.querySelector(".composer");
+    var doneTick = document.getElementById("done-tick");
+    var doneMsg = document.getElementById("done-msg");
+    var doneSub = document.getElementById("done-sub");
+    var sent = false;
+    var finished = false;
+
+    function autoGrow() {
+      textarea.style.height = "auto";
+      textarea.style.height = Math.min(textarea.scrollHeight, window.innerHeight * 0.45) + "px";
+      document.documentElement.style.setProperty("--composer-height", composer.offsetHeight + "px");
+    }
+    textarea.addEventListener("input", autoGrow);
+    window.addEventListener("resize", autoGrow);
+    autoGrow();
+    textarea.focus();
+
+    textarea.addEventListener("keydown", function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+        e.preventDefault();
+        form.requestSubmit();
+      }
+    });
+
+    function closeSoon() {
+      setTimeout(function () {
+        try { window.close(); } catch (_e) {}
+        try { window.open("", "_self"); window.close(); } catch (_e) {}
+      }, 500);
+    }
+
+    /* ---------------- server presence channel ----------------
+       While /events is open the server knows this page is alive; when it closes
+       for good the server shuts itself down. The server also pushes a "cancel"
+       event here when the reply arrived in the terminal instead. */
+    var events = null;
+
+    function finish(opts) {
+      if (finished) return;
+      finished = true;
+      if (events) { try { events.close(); } catch (_e) {} }
+      doneTick.textContent = opts.tick;
+      doneMsg.textContent = opts.msg;
+      doneSub.textContent = opts.sub;
+      doneEl.classList.toggle("stale", opts.stale === true);
+      doneEl.classList.add("show");
+      composer.style.display = "none";
+      closeSoon();
+    }
+
+    function serverGone(message) {
+      if (finished || sent) return;
+      finish({
+        tick: "○",
+        msg: message || "Page closed",
+        sub: "This page is no longer connected to pi. Closing…",
+        stale: true,
+      });
+    }
+
+    try {
+      events = new EventSource("/events");
+      events.addEventListener("cancel", function (e) {
+        var data = {};
+        try { data = JSON.parse(e.data); } catch (_err) {}
+        serverGone(data.message || "Page closed by pi");
+      });
+      events.onerror = function () {
+        if (finished || sent) return;
+        /* EventSource also errors on transient reconnects, so confirm the
+           server is really gone before closing the page. */
+        fetch("/alive", { cache: "no-store" })
+          .then(function (res) { if (!res.ok) serverGone("pi stopped serving this page"); })
+          .catch(function () { serverGone("pi stopped serving this page"); });
+      };
+    } catch (_e) {
+      /* No EventSource support: the page simply keeps working without the
+         presence channel. */
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (sent) return;
+      var text = textarea.value.trim();
+      if (!text) {
+        errorEl.textContent = "Write something first.";
+        errorEl.style.display = "block";
+        textarea.focus();
+        return;
+      }
+      errorEl.style.display = "none";
+      sendBtn.disabled = true;
+      sendBtn.textContent = "Sending…";
+
+      fetch("/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: payload.token, text: text }),
+        keepalive: true,
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("pi rejected the reply (" + res.status + ")");
+          sent = true;
+          finish({ tick: "✓", msg: "Reply sent to pi", sub: "You can close this tab." });
+        })
+        .catch(function (err) {
+          errorEl.textContent = String((err && err.message) || err);
+          errorEl.style.display = "block";
+          sendBtn.disabled = false;
+          sendBtn.textContent = "Send";
+        });
+    });
+  })();
+  </script>
+</body>
+</html>
