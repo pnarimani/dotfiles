@@ -13,7 +13,8 @@
   "packages": [
     "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:@ff-labs/pi-fff"
+    "npm:@ff-labs/pi-fff",
+    "git:git@github.com:Zal-Interactive/unity-tool.git"
   ],
   "hideThinkingBlock": true,
   "theme": "dark",
