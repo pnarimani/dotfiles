@@ -1,30 +1,51 @@
 {
-  "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "high",
+  "lastChangelogVersion": "0.84.2",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "medium",
+  "subagents": {
+    "agentOverrides": {
+      "reviewer": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "high"
+      },
+      "scout": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "medium"
+      },
+      "worker": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "max"
+      },
+      "oracle": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "medium"
+      },
+      "researcher": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "high"
+      }
+    }
+  },
   "enabledModels": [
-    "opencode-go/gpt-5.6-luna",
     "openai-codex/gpt-5.6-sol",
-    "openai-codex/gpt-5.6-terra",
-    "openai-codex/gpt-5.6-luna",
-    "opencode-go/qwen3.8-max"
+    "openai-codex/gpt-5.6-luna"
   ],
   "packages": [
     "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@ff-labs/pi-fff",
-    "git:git@github.com:pnarimani/pi-subagents.git",
-    "git:git@github.com:Zal-Interactive/unity-tool.git"
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents"
   ],
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "theme": "dark",
   "terminal": {
     "showTerminalProgress": true
   },
   "quietStartup": false,
   "treeFilterMode": "no-tools",
-  "tuiMode": "fullscreen",
+  "tuiMode": "regular",
   "doubleEscapeAction": "tree",
   "fullscreenScrollbar": "auto"
 }
