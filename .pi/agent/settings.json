@@ -1,42 +1,102 @@
 {
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.84.4",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-sol",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "max",
   "subagents": {
     "agentOverrides": {
       "reviewer": {
         "model": "openai-codex/gpt-5.6-sol",
-        "thinking": "high"
+        "thinking": "high",
+        "tools": [
+          "read",
+          "grep",
+          "find",
+          "ls",
+          "mcp:unity"
+        ]
       },
       "scout": {
         "model": "openai-codex/gpt-5.6-luna",
-        "thinking": "medium"
+        "thinking": "medium",
+        "tools": [
+          "read",
+          "grep",
+          "find",
+          "ls",
+          "bash",
+          "write",
+          "mcp:unity"
+        ]
       },
       "worker": {
-        "model": "openai-codex/gpt-5.6-luna",
-        "thinking": "max"
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "max",
+        "tools": [
+          "read",
+          "grep",
+          "find",
+          "ls",
+          "bash",
+          "edit",
+          "write",
+          "contact_supervisor",
+          "mcp:unity"
+        ]
       },
       "oracle": {
         "model": "openai-codex/gpt-5.6-sol",
-        "thinking": "medium"
+        "thinking": "medium",
+        "tools": [
+          "read",
+          "grep",
+          "find",
+          "ls",
+          "bash",
+          "mcp:unity"
+        ]
       },
       "researcher": {
         "model": "openai-codex/gpt-5.6-luna",
-        "thinking": "high"
+        "thinking": "high",
+        "tools": [
+          "read",
+          "write",
+          "web_search",
+          "fetch_content",
+          "get_search_content",
+          "mcp:unity"
+        ]
+      },
+      "delegate": {
+        "tools": [
+          "read",
+          "grep",
+          "find",
+          "ls",
+          "bash",
+          "edit",
+          "write",
+          "contact_supervisor",
+          "mcp:unity"
+        ]
       }
     }
   },
   "enabledModels": [
     "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra",
     "openai-codex/gpt-5.6-luna"
   ],
   "packages": [
-    "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@ff-labs/pi-fff",
     "npm:pi-mcp-adapter",
-    "npm:pi-subagents"
+    "npm:pi-subagents",
+    "git:git@github.com:Zal-Interactive/unity-tool.git",
+    "npm:@tunnckocore/pi-gpt-fast-mode",
+    "npm:pi-web-search",
+    "npm:@narumitw/pi-codex-compact"
   ],
   "hideThinkingBlock": false,
   "theme": "dark",
