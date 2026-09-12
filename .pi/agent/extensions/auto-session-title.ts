@@ -4,7 +4,6 @@ import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
 const TITLE_PROVIDER = "openai-codex";
 const TITLE_MODEL = "gpt-5.6-luna";
-const TITLE_STATUS = "auto-session-title";
 const MAX_TITLE_LENGTH = 80;
 
 class SessionTitleEditor extends CustomEditor {
@@ -21,7 +20,7 @@ class SessionTitleEditor extends CustomEditor {
 
 		const label = ` ${truncateToWidth(this.title, Math.max(0, width - 4), "", false)} `;
 		const border = "─".repeat(Math.max(0, width - visibleWidth(label)));
-		lines[0] = this.borderColor(label + border);
+		lines[0] = this.borderColor(border + label);
 		return lines;
 	}
 }
@@ -117,7 +116,6 @@ export default function autoSessionTitle(pi: ExtensionAPI): void {
 
 		const request = new AbortController();
 		titleRequest = request;
-		ctx.ui.setStatus(TITLE_STATUS, `Generating title with ${TITLE_MODEL}...`);
 		void (async () => {
 			try {
 				const response = await ctx.modelRegistry.complete(
@@ -159,10 +157,7 @@ export default function autoSessionTitle(pi: ExtensionAPI): void {
 					ctx.ui.notify(`auto-session-title: title generation failed: ${message}`, "error");
 				}
 			} finally {
-				if (titleRequest === request) {
-					titleRequest = undefined;
-					ctx.ui.setStatus(TITLE_STATUS, undefined);
-				}
+				if (titleRequest === request) titleRequest = undefined;
 			}
 		})();
 	});
