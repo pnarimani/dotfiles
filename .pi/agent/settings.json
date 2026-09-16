@@ -1,8 +1,8 @@
 {
   "lastChangelogVersion": "0.85.1",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-sol",
-  "defaultThinkingLevel": "low",
+  "defaultModel": "gpt-5.6-luna",
+  "defaultThinkingLevel": "max",
   "subagents": {
     "agentOverrides": {
       "reviewer": {
@@ -13,7 +13,11 @@
           "grep",
           "find",
           "ls",
-          "mcp:unity"
+          "bash",
+          "unity_open",
+          "unity_status",
+          "unity_search",
+          "unity_command"
         ]
       },
       "scout": {
@@ -26,7 +30,10 @@
           "ls",
           "bash",
           "write",
-          "mcp:unity"
+          "unity_open",
+          "unity_status",
+          "unity_search",
+          "unity_command"
         ]
       },
       "worker": {
@@ -41,7 +48,10 @@
           "edit",
           "write",
           "contact_supervisor",
-          "mcp:unity"
+          "unity_open",
+          "unity_status",
+          "unity_search",
+          "unity_command"
         ]
       },
       "oracle": {
@@ -53,7 +63,10 @@
           "find",
           "ls",
           "bash",
-          "mcp:unity"
+          "unity_open",
+          "unity_status",
+          "unity_search",
+          "unity_command"
         ]
       },
       "researcher": {
@@ -65,7 +78,10 @@
           "web_search",
           "fetch_content",
           "get_search_content",
-          "mcp:unity"
+          "unity_open",
+          "unity_status",
+          "unity_search",
+          "unity_command"
         ]
       },
       "delegate": {
@@ -78,7 +94,23 @@
           "edit",
           "write",
           "contact_supervisor",
-          "mcp:unity"
+          "unity_open",
+          "unity_status",
+          "unity_search",
+          "unity_command"
+        ]
+      },
+      "evidence-auditor": {
+        "tools": [
+          "read",
+          "web_search",
+          "fetch_content",
+          "get_search_content",
+          "source_check",
+          "unity_open",
+          "unity_status",
+          "unity_search",
+          "unity_command"
         ]
       }
     }
@@ -96,18 +128,20 @@
     "npm:pi-subagents",
     "git:git@github.com:Zal-Interactive/unity-tool.git",
     "npm:@tunnckocore/pi-gpt-fast-mode",
-    "npm:pi-web-search",
-    "npm:pi-blackhole",
-    "npm:@injaneity/pi-computer-use"
+    "npm:@injaneity/pi-computer-use",
+    "npm:pi-web-access",
+    "npm:@ogulcancelik/pi-codex-compaction"
   ],
   "hideThinkingBlock": true,
   "theme": "dark",
   "terminal": {
-    "showTerminalProgress": true
+    "showTerminalProgress": true,
+    "clearOnShrink": true
   },
   "quietStartup": false,
   "treeFilterMode": "no-tools",
   "tuiMode": "fullscreen",
   "doubleEscapeAction": "tree",
-  "fullscreenScrollbar": "auto"
+  "fullscreenScrollbar": "auto",
+  "editorPaddingX": 1
 }
